@@ -1,0 +1,709 @@
+[
+    {
+        "id": "b4c6b65f63653fc1",
+        "type": "tab",
+        "label": "OPERACIONES",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9feaf68056db1f0b",
+        "type": "inject",
+        "z": "b4c6b65f63653fc1",
+        "name": "Inicio",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 210,
+        "y": 160,
+        "wires": [
+            [
+                "6d476527c65f78d1"
+            ]
+        ]
+    },
+    {
+        "id": "6d476527c65f78d1",
+        "type": "ui_text_input",
+        "z": "b4c6b65f63653fc1",
+        "name": "",
+        "label": "Teclea el valor del lado",
+        "tooltip": "",
+        "group": "ebd6914353d7661e",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": false,
+        "className": "",
+        "topicType": "msg",
+        "x": 460,
+        "y": 160,
+        "wires": [
+            [
+                "1551836ba8e9700e"
+            ]
+        ]
+    },
+    {
+        "id": "1551836ba8e9700e",
+        "type": "function",
+        "z": "b4c6b65f63653fc1",
+        "name": "cargaLado",
+        "func": "global.set(\"lado\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3e157bfccfdc37c3",
+        "type": "ui_button",
+        "z": "b4c6b65f63653fc1",
+        "name": "",
+        "group": "ebd6914353d7661e",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "button",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 210,
+        "y": 240,
+        "wires": [
+            [
+                "8a3a7c1bba9d168f"
+            ]
+        ]
+    },
+    {
+        "id": "b5223662d4e38caa",
+        "type": "debug",
+        "z": "b4c6b65f63653fc1",
+        "name": "msg payload",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "8a3a7c1bba9d168f",
+        "type": "function",
+        "z": "b4c6b65f63653fc1",
+        "name": "CalculaPerimetro",
+        "func": "msg.payload = global.get(\"lado\")*4;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 240,
+        "wires": [
+            [
+                "b5223662d4e38caa",
+                "3cf69658362cfc64"
+            ]
+        ]
+    },
+    {
+        "id": "3cf69658362cfc64",
+        "type": "ui_text",
+        "z": "b4c6b65f63653fc1",
+        "group": "ebd6914353d7661e",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Valor",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 630,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "6c287da76614c849",
+        "type": "function",
+        "z": "b4c6b65f63653fc1",
+        "name": "setPerimetro",
+        "func": "global.set(\"perimetro\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a53dd1856c1f389d",
+        "type": "function",
+        "z": "b4c6b65f63653fc1",
+        "name": "setApotema",
+        "func": "global.set(\"apotema\", msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dcfa910c9b06e8f7",
+        "type": "ui_text_input",
+        "z": "b4c6b65f63653fc1",
+        "name": "",
+        "label": "Perimetro:",
+        "tooltip": "",
+        "group": "15b0448432b8b66d",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 290,
+        "y": 380,
+        "wires": [
+            [
+                "6c287da76614c849"
+            ]
+        ]
+    },
+    {
+        "id": "862dabc5613e1229",
+        "type": "ui_text_input",
+        "z": "b4c6b65f63653fc1",
+        "name": "",
+        "label": "Apotema:",
+        "tooltip": "",
+        "group": "15b0448432b8b66d",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 280,
+        "y": 420,
+        "wires": [
+            [
+                "a53dd1856c1f389d"
+            ]
+        ]
+    },
+    {
+        "id": "5e56b281cf874c25",
+        "type": "function",
+        "z": "b4c6b65f63653fc1",
+        "name": "calcularAreaPentagono",
+        "func": "msg.payload = global.get(\"perimetro\") * global.get(\"apotema\") /2;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 480,
+        "wires": [
+            [
+                "ec4a1babb75d6823"
+            ]
+        ]
+    },
+    {
+        "id": "8ac96d96297d66f9",
+        "type": "ui_button",
+        "z": "b4c6b65f63653fc1",
+        "name": "",
+        "group": "15b0448432b8b66d",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Calcula el área del pentagono",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 500,
+        "wires": [
+            [
+                "5e56b281cf874c25"
+            ]
+        ]
+    },
+    {
+        "id": "ec4a1babb75d6823",
+        "type": "ui_text",
+        "z": "b4c6b65f63653fc1",
+        "group": "15b0448432b8b66d",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Area del pentagono: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 740,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "ba040ee58f1c6a1d",
+        "type": "inject",
+        "z": "b4c6b65f63653fc1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 70,
+        "y": 580,
+        "wires": [
+            [
+                "999b7c152b0c7ee4"
+            ]
+        ]
+    },
+    {
+        "id": "999b7c152b0c7ee4",
+        "type": "ui_text_input",
+        "z": "b4c6b65f63653fc1",
+        "name": "",
+        "label": "Radio:",
+        "tooltip": "",
+        "group": "38ee8f965c36b264",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 250,
+        "y": 580,
+        "wires": [
+            [
+                "91acdb0f2cc7c840"
+            ]
+        ]
+    },
+    {
+        "id": "91acdb0f2cc7c840",
+        "type": "function",
+        "z": "b4c6b65f63653fc1",
+        "name": "setRadio",
+        "func": "global.set(\"radio\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5c9fe3ceb6261564",
+        "type": "ui_button",
+        "z": "b4c6b65f63653fc1",
+        "name": "",
+        "group": "38ee8f965c36b264",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Calcula el área del circulo",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 250,
+        "y": 660,
+        "wires": [
+            [
+                "815334e519cfe998"
+            ]
+        ]
+    },
+    {
+        "id": "815334e519cfe998",
+        "type": "function",
+        "z": "b4c6b65f63653fc1",
+        "name": "calcularAreaCircul",
+        "func": "msg.payload = Math.PI * Math.pow(global.get(\"radio\"),2);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 660,
+        "wires": [
+            [
+                "852a44791337a9ad"
+            ]
+        ]
+    },
+    {
+        "id": "852a44791337a9ad",
+        "type": "ui_text",
+        "z": "b4c6b65f63653fc1",
+        "group": "38ee8f965c36b264",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Area del circulo: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 800,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "2ba91d5537b829cd",
+        "type": "inject",
+        "z": "b4c6b65f63653fc1",
+        "name": "Inicio",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 70,
+        "y": 780,
+        "wires": [
+            [
+                "46f8f4a4bb6c348e",
+                "c4876873b328fd9a"
+            ]
+        ]
+    },
+    {
+        "id": "46f8f4a4bb6c348e",
+        "type": "ui_text_input",
+        "z": "b4c6b65f63653fc1",
+        "name": "",
+        "label": "Número:",
+        "tooltip": "",
+        "group": "32c91619100b6b0b",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 260,
+        "y": 740,
+        "wires": [
+            [
+                "2559d9b1c46d0ba0"
+            ]
+        ]
+    },
+    {
+        "id": "2559d9b1c46d0ba0",
+        "type": "function",
+        "z": "b4c6b65f63653fc1",
+        "name": "setNumero",
+        "func": "global.set(\"numero\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1817b68c9f2ea4b5",
+        "type": "ui_button",
+        "z": "b4c6b65f63653fc1",
+        "name": "",
+        "group": "32c91619100b6b0b",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Calcula potencia",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 210,
+        "y": 880,
+        "wires": [
+            [
+                "a5f48ad3833d868c"
+            ]
+        ]
+    },
+    {
+        "id": "a5f48ad3833d868c",
+        "type": "function",
+        "z": "b4c6b65f63653fc1",
+        "name": "calcularPotencia",
+        "func": "msg.payload = Math.pow(global.get(\"numero\"),global.get(\"potencia\"));\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 880,
+        "wires": [
+            [
+                "c498e940ebf4a49b"
+            ]
+        ]
+    },
+    {
+        "id": "c498e940ebf4a49b",
+        "type": "ui_text",
+        "z": "b4c6b65f63653fc1",
+        "group": "32c91619100b6b0b",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Potencia: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 720,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "c4876873b328fd9a",
+        "type": "ui_text_input",
+        "z": "b4c6b65f63653fc1",
+        "name": "",
+        "label": "Potencia:",
+        "tooltip": "",
+        "group": "32c91619100b6b0b",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 260,
+        "y": 790,
+        "wires": [
+            [
+                "ba477f1ca75dd3b8"
+            ]
+        ]
+    },
+    {
+        "id": "ba477f1ca75dd3b8",
+        "type": "function",
+        "z": "b4c6b65f63653fc1",
+        "name": "setPotencia",
+        "func": "global.set(\"potencia\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 790,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ebd6914353d7661e",
+        "type": "ui_group",
+        "name": "Perimetro",
+        "tab": "e6da385bd793b085",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "15b0448432b8b66d",
+        "type": "ui_group",
+        "name": "Área petagono",
+        "tab": "e6da385bd793b085",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "38ee8f965c36b264",
+        "type": "ui_group",
+        "name": "Área del Circulo",
+        "tab": "e6da385bd793b085",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "32c91619100b6b0b",
+        "type": "ui_group",
+        "name": "Potencia",
+        "tab": "e6da385bd793b085",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e6da385bd793b085",
+        "type": "ui_tab",
+        "name": "Form Basic",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    }
+]

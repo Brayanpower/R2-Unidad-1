@@ -1,0 +1,117 @@
+[
+    {
+        "id": "afbc5b2a51db3583",
+        "type": "tab",
+        "label": "MQTT",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "1b7b17b7.c10e17",
+        "type": "mqtt in",
+        "z": "afbc5b2a51db3583",
+        "name": "",
+        "topic": "estudiantes",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "cd7a3c09.83f8a",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 270,
+        "y": 240,
+        "wires": [
+            [
+                "93d8a3c7.d66a98"
+            ]
+        ]
+    },
+    {
+        "id": "93d8a3c7.d66a98",
+        "type": "debug",
+        "z": "afbc5b2a51db3583",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 490,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "16b0e7c2.76e694",
+        "type": "mqtt out",
+        "z": "afbc5b2a51db3583",
+        "name": "",
+        "topic": "estudiantes",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "cd7a3c09.83f8a",
+        "x": 510,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "efdebb23.d0109",
+        "type": "inject",
+        "z": "afbc5b2a51db3583",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Hola, estudiante!",
+        "payloadType": "str",
+        "x": 270,
+        "y": 140,
+        "wires": [
+            [
+                "16b0e7c2.76e694"
+            ]
+        ]
+    },
+    {
+        "id": "cd7a3c09.83f8a",
+        "type": "mqtt-broker",
+        "name": "Localhost",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "15",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

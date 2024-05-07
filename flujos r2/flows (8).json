@@ -1,0 +1,101 @@
+[
+    {
+        "id": "810ea8574e6076e3",
+        "type": "tab",
+        "label": "Número Primo",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "0483c931449efa01",
+        "type": "ui_text_input",
+        "z": "810ea8574e6076e3",
+        "name": "",
+        "label": "Número",
+        "tooltip": "",
+        "group": "d0e34394.9fd1d",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 220,
+        "y": 120,
+        "wires": [
+            [
+                "2129ee1863c249c4"
+            ]
+        ]
+    },
+    {
+        "id": "2129ee1863c249c4",
+        "type": "function",
+        "z": "810ea8574e6076e3",
+        "name": "Determinar Primo",
+        "func": "function esPrimo(numero) {\n    if (numero <= 1) {\n        return false;\n    }\n    for (var i = 2; i <= Math.sqrt(numero); i++) {\n        if (numero % i === 0) {\n            return false;\n        }\n    }\n    return true;\n}\n\nvar num = parseInt(msg.payload);\n\nif (!isNaN(num)) {\n    var resultado = esPrimo(num) ? \"es primo\" : \"no es primo\";\n    msg.payload = \"El número \" + num + \" \" + resultado;\n} else {\n    msg.payload = \"Por favor, ingrese un número válido.\";\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 430,
+        "y": 120,
+        "wires": [
+            [
+                "abf1f27ea32d4c05"
+            ]
+        ]
+    },
+    {
+        "id": "abf1f27ea32d4c05",
+        "type": "ui_text",
+        "z": "810ea8574e6076e3",
+        "group": "d8fc2a9f.0a3dc",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Resultado:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 670,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "d0e34394.9fd1d",
+        "type": "ui_group",
+        "name": "Ingreso de Números",
+        "tab": "8c27a0b2.740e98",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "d8fc2a9f.0a3dc",
+        "type": "ui_group",
+        "name": "Resultado",
+        "tab": "8c27a0b2.740e98",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8c27a0b2.740e98",
+        "type": "ui_tab",
+        "name": "Potencia",
+        "icon": "dashboard",
+        "order": 5,
+        "disabled": false,
+        "hidden": false
+    }
+]

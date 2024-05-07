@@ -1,0 +1,251 @@
+[
+    {
+        "id": "656c59914de60d77",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "1ecf3548e6f5ebaf",
+        "type": "ui_table",
+        "z": "656c59914de60d77",
+        "group": "8410b0f4.02c2f8",
+        "name": "sensor details",
+        "order": 2,
+        "width": 9,
+        "height": 6,
+        "columns": [],
+        "outputs": 0,
+        "cts": false,
+        "x": 860,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "3b595ba5956c1b61",
+        "type": "inject",
+        "z": "656c59914de60d77",
+        "name": "consulta",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "SELECT * FROM sensor_details;",
+        "payload": "",
+        "payloadType": "str",
+        "x": 370,
+        "y": 120,
+        "wires": [
+            [
+                "2a9cc3f935a8f6a7"
+            ]
+        ]
+    },
+    {
+        "id": "2a9cc3f935a8f6a7",
+        "type": "sqlite",
+        "z": "656c59914de60d77",
+        "mydb": "e18f27f4abb5962c",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "sqlite",
+        "x": 590,
+        "y": 120,
+        "wires": [
+            [
+                "1ecf3548e6f5ebaf"
+            ]
+        ]
+    },
+    {
+        "id": "88347cf5f9a720b7",
+        "type": "inject",
+        "z": "656c59914de60d77",
+        "name": "consulta",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "SELECT * FROM sensor;",
+        "payload": "",
+        "payloadType": "str",
+        "x": 370,
+        "y": 220,
+        "wires": [
+            [
+                "31a438d6dffffef0"
+            ]
+        ]
+    },
+    {
+        "id": "31a438d6dffffef0",
+        "type": "sqlite",
+        "z": "656c59914de60d77",
+        "mydb": "e18f27f4abb5962c",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "sqlite",
+        "x": 590,
+        "y": 220,
+        "wires": [
+            [
+                "d61e07d1bbe5286c"
+            ]
+        ]
+    },
+    {
+        "id": "d61e07d1bbe5286c",
+        "type": "ui_table",
+        "z": "656c59914de60d77",
+        "group": "f65289583c68153b",
+        "name": "sensors",
+        "order": 1,
+        "width": 10,
+        "height": 7,
+        "columns": [],
+        "outputs": 0,
+        "cts": false,
+        "x": 820,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "cbf3aaba39100401",
+        "type": "inject",
+        "z": "656c59914de60d77",
+        "name": "consulta",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "SELECT      u.username AS login,     ut.role,     u.id AS user_id,     u.full_name,     s.name AS sensor_name,     sd.value AS sensor_value,     sd.record_at AS sensor_record_at FROM      users u LEFT JOIN      user_tracking ut ON u.id = ut.user_id LEFT JOIN      sensor_details sd ON u.id = sd.user_id LEFT JOIN      sensor s ON sd.sensor_id = s.id;",
+        "payload": "",
+        "payloadType": "str",
+        "x": 360,
+        "y": 360,
+        "wires": [
+            [
+                "7a6c6f033b7d6c57"
+            ]
+        ]
+    },
+    {
+        "id": "7a6c6f033b7d6c57",
+        "type": "sqlite",
+        "z": "656c59914de60d77",
+        "mydb": "e18f27f4abb5962c",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "sqlite",
+        "x": 580,
+        "y": 360,
+        "wires": [
+            [
+                "f76a47c4ea84a1af"
+            ]
+        ]
+    },
+    {
+        "id": "f76a47c4ea84a1af",
+        "type": "ui_table",
+        "z": "656c59914de60d77",
+        "group": "7461d671e33a3bab",
+        "name": "sensors",
+        "order": 1,
+        "width": 10,
+        "height": 7,
+        "columns": [],
+        "outputs": 0,
+        "cts": false,
+        "x": 810,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "95699f968c9d2a66",
+        "type": "ui_spacer",
+        "z": "656c59914de60d77",
+        "name": "spacer",
+        "group": "8410b0f4.02c2f8",
+        "order": 1,
+        "width": 9,
+        "height": 1
+    },
+    {
+        "id": "8410b0f4.02c2f8",
+        "type": "ui_group",
+        "name": "sensors details",
+        "tab": "a4c3a4ab.65c19",
+        "order": 1,
+        "disp": true,
+        "width": 9,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e18f27f4abb5962c",
+        "type": "sqlitedb",
+        "db": "C:\\sqlite\\aoit3.db",
+        "mode": "RO"
+    },
+    {
+        "id": "f65289583c68153b",
+        "type": "ui_group",
+        "name": "sensors",
+        "tab": "a4c3a4ab.65c19",
+        "order": 2,
+        "disp": true,
+        "width": 10,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7461d671e33a3bab",
+        "type": "ui_group",
+        "name": "Usuarios",
+        "tab": "a4c3a4ab.65c19",
+        "order": 3,
+        "disp": true,
+        "width": 10,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a4c3a4ab.65c19",
+        "type": "ui_tab",
+        "name": "Dashboard",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]

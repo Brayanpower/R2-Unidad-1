@@ -1,0 +1,248 @@
+[
+    {
+        "id": "dcd350cb03ca8251",
+        "type": "tab",
+        "label": "Ejercicio 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "233da0deb8069950",
+        "type": "ui_dropdown",
+        "z": "dcd350cb03ca8251",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "d4050bdea1d42f7c",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Administrador",
+                "value": "Administrador",
+                "type": "str"
+            },
+            {
+                "label": "Alumno",
+                "value": "Alumno",
+                "type": "str"
+            },
+            {
+                "label": "Docente",
+                "value": "Docente",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 420,
+        "y": 180,
+        "wires": [
+            [
+                "65674385179dcc52"
+            ]
+        ]
+    },
+    {
+        "id": "47f038d4ca138be4",
+        "type": "ui_text_input",
+        "z": "dcd350cb03ca8251",
+        "name": "",
+        "label": "Login",
+        "tooltip": "",
+        "group": "d4050bdea1d42f7c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 410,
+        "y": 120,
+        "wires": [
+            [
+                "c14b41d21c725d3b"
+            ]
+        ]
+    },
+    {
+        "id": "676772f6701a5a8f",
+        "type": "ui_text_input",
+        "z": "dcd350cb03ca8251",
+        "name": "",
+        "label": "Password",
+        "tooltip": "",
+        "group": "d4050bdea1d42f7c",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 420,
+        "y": 240,
+        "wires": [
+            [
+                "72db0bda9a6cb8e4"
+            ]
+        ]
+    },
+    {
+        "id": "c14b41d21c725d3b",
+        "type": "function",
+        "z": "dcd350cb03ca8251",
+        "name": "function 4",
+        "func": "global.set('login', msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "65674385179dcc52",
+        "type": "function",
+        "z": "dcd350cb03ca8251",
+        "name": "function 5",
+        "func": "global.set('rol', msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "72db0bda9a6cb8e4",
+        "type": "function",
+        "z": "dcd350cb03ca8251",
+        "name": "function 6",
+        "func": "global.set('password', msg.payload);\nreturn { password: 'Password:', value: msg.payload };\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ecb05b8d925d1dc0",
+        "type": "ui_button",
+        "z": "dcd350cb03ca8251",
+        "name": "",
+        "group": "d4050bdea1d42f7c",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Actualizar",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 340,
+        "y": 320,
+        "wires": [
+            [
+                "2b2b127dd5a7c09e"
+            ]
+        ]
+    },
+    {
+        "id": "2b2b127dd5a7c09e",
+        "type": "function",
+        "z": "dcd350cb03ca8251",
+        "name": "function 7",
+        "func": "var login = global.get('login');\nvar password = global.get('password');\nvar rol = global.get('rol');\n\nvar usuarios = {\n    'Utng': { password: '1234', rol: 'Alumno' },\n    'Docente': { password: '1235', rol: 'Docente' },\n    'Administrador': { password: '478', rol: 'Administrador' }\n};\n\nvar mensaje = \"\";\n\nif (usuarios.hasOwnProperty(login) && usuarios[login].password === password) {\n    if (usuarios[login].rol === rol) {\n        mensaje = 'Bienvenido ' + usuarios[login].rol;\n    } else {\n        mensaje = 'Error';\n    }\n} else {\n    mensaje = 'Rechazo';\n}\n\nmsg.payload = mensaje;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 320,
+        "wires": [
+            [
+                "352cf3b925334692"
+            ]
+        ]
+    },
+    {
+        "id": "352cf3b925334692",
+        "type": "ui_text",
+        "z": "dcd350cb03ca8251",
+        "group": "d4050bdea1d42f7c",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 690,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "d4050bdea1d42f7c",
+        "type": "ui_group",
+        "name": "DEFAULT2",
+        "tab": "16cc928d23b37711",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "16cc928d23b37711",
+        "type": "ui_tab",
+        "name": "ANSWER121",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    }
+]

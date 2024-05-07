@@ -1,0 +1,218 @@
+[
+    {
+        "id": "b677ffda70ee2f48",
+        "type": "tab",
+        "label": "ejercisio 3 part2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d6a058bea798de76",
+        "type": "ui_text_input",
+        "z": "b677ffda70ee2f48",
+        "name": "Respuesta 1",
+        "label": "¿Tus ingresos son menores a 3000 pesos?",
+        "tooltip": "",
+        "group": "b23c3b88.65b98",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 230,
+        "y": 180,
+        "wires": [
+            [
+                "a8effa01228f4b74"
+            ]
+        ]
+    },
+    {
+        "id": "a8effa01228f4b74",
+        "type": "ui_text_input",
+        "z": "b677ffda70ee2f48",
+        "name": "Respuesta 2",
+        "label": "¿Tienes hermanos?",
+        "tooltip": "",
+        "group": "b23c3b88.65b98",
+        "order": 2,
+        "width": "6",
+        "height": "1",
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "",
+        "x": 230,
+        "y": 240,
+        "wires": [
+            [
+                "08b9845a8a40f151"
+            ]
+        ]
+    },
+    {
+        "id": "08b9845a8a40f151",
+        "type": "ui_text_input",
+        "z": "b677ffda70ee2f48",
+        "name": "Respuesta 3",
+        "label": "¿Tienes otra beca?",
+        "tooltip": "",
+        "group": "b23c3b88.65b98",
+        "order": 3,
+        "width": "6",
+        "height": "1",
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "",
+        "x": 230,
+        "y": 300,
+        "wires": [
+            [
+                "50ee993dbc4a14b7"
+            ]
+        ]
+    },
+    {
+        "id": "50ee993dbc4a14b7",
+        "type": "switch",
+        "z": "b677ffda70ee2f48",
+        "name": "Procesar Respuestas",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "si",
+                "vt": "str",
+                "v2": "si",
+                "v2t": "str"
+            },
+            {
+                "t": "eq",
+                "v": "si",
+                "vt": "str",
+                "v2": "no",
+                "v2t": "str"
+            },
+            {
+                "t": "eq",
+                "v": "no",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 390,
+        "y": 300,
+        "wires": [
+            [],
+            [],
+            [
+                "567fdb2e380a590e"
+            ],
+            [
+                "fb2ab02d74c3dec6"
+            ]
+        ]
+    },
+    {
+        "id": "fb2ab02d74c3dec6",
+        "type": "change",
+        "z": "b677ffda70ee2f48",
+        "name": "Mensaje Rechazado",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Tu solicitud de beca ha sido rechazada.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 360,
+        "wires": [
+            [
+                "bd9e4f83d4f055ce"
+            ]
+        ]
+    },
+    {
+        "id": "567fdb2e380a590e",
+        "type": "change",
+        "z": "b677ffda70ee2f48",
+        "name": "Mensaje Aprobado",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Tu solicitud de beca ha sido aprobada.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 240,
+        "wires": [
+            [
+                "bd9e4f83d4f055ce"
+            ]
+        ]
+    },
+    {
+        "id": "bd9e4f83d4f055ce",
+        "type": "ui_text",
+        "z": "b677ffda70ee2f48",
+        "group": "b23c3b88.65b98",
+        "order": 4,
+        "width": "6",
+        "height": "1",
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 490,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "b23c3b88.65b98",
+        "type": "ui_group",
+        "name": "Beca",
+        "tab": "b77491f9.6c5aa8",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "b77491f9.6c5aa8",
+        "type": "ui_tab",
+        "name": "Beca",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]

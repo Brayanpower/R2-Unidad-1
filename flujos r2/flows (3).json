@@ -1,0 +1,94 @@
+[
+    {
+        "id": "d7386ccae1a7771e",
+        "type": "tab",
+        "label": "5 num sin coma",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "282f3c9668471fb1",
+        "type": "ui_text_input",
+        "z": "d7386ccae1a7771e",
+        "name": "",
+        "label": "Ingrese 5 números separados por comas",
+        "tooltip": "",
+        "group": "5318db18769060cf",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 220,
+        "y": 120,
+        "wires": [
+            [
+                "8bf382e7d383fdc2"
+            ]
+        ]
+    },
+    {
+        "id": "8bf382e7d383fdc2",
+        "type": "function",
+        "z": "d7386ccae1a7771e",
+        "name": "Calcular Promedio",
+        "func": "var numeros = msg.payload.split(',').map(parseFloat);\n\nvar suma = numeros.reduce(function(acum, num) {\n    return acum + num;\n}, 0);\n\nvar promedio = suma / numeros.length;\n\nmsg.payload = promedio.toFixed(2);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 590,
+        "y": 260,
+        "wires": [
+            [
+                "09e607af382bb0fa"
+            ]
+        ]
+    },
+    {
+        "id": "09e607af382bb0fa",
+        "type": "ui_text",
+        "z": "d7386ccae1a7771e",
+        "group": "5318db18769060cf",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Promedio:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 710,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "5318db18769060cf",
+        "type": "ui_group",
+        "name": "numero",
+        "tab": "380c54496e4ff706",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "380c54496e4ff706",
+        "type": "ui_tab",
+        "name": "Numeros",
+        "icon": "dashboard",
+        "order": 51,
+        "disabled": false,
+        "hidden": false
+    }
+]

@@ -1,0 +1,94 @@
+[
+    {
+        "id": "2af693c4c3244dc2",
+        "type": "tab",
+        "label": "10 num con coma",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "82bd742007897ddf",
+        "type": "ui_text_input",
+        "z": "2af693c4c3244dc2",
+        "name": "",
+        "label": "Ingrese 10 números separados por comas",
+        "tooltip": "",
+        "group": "7b15ff60a1a527dc",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 310,
+        "y": 140,
+        "wires": [
+            [
+                "d70e8b802a0d8d1e"
+            ]
+        ]
+    },
+    {
+        "id": "d70e8b802a0d8d1e",
+        "type": "function",
+        "z": "2af693c4c3244dc2",
+        "name": "Encontrar Máximo y Mínimo",
+        "func": "var numeros = msg.payload.split(',').map(parseFloat);\n\nvar maximo = numeros[0];\nvar minimo = numeros[0];\n\nfor (var i = 1; i < numeros.length; i++) {\n    if (numeros[i] > maximo) {\n        maximo = numeros[i];\n    }\n    if (numeros[i] < minimo) {\n        minimo = numeros[i];\n    }\n}\n\nmsg.payload = \"El mayor número es: \" + maximo + \", y el menor número es: \" + minimo;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 580,
+        "y": 340,
+        "wires": [
+            [
+                "3ac174fd91caa28c"
+            ]
+        ]
+    },
+    {
+        "id": "3ac174fd91caa28c",
+        "type": "ui_text",
+        "z": "2af693c4c3244dc2",
+        "group": "7b15ff60a1a527dc",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 720,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "7b15ff60a1a527dc",
+        "type": "ui_group",
+        "name": "10numeros",
+        "tab": "96b58d5f9449e44a",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "96b58d5f9449e44a",
+        "type": "ui_tab",
+        "name": "10Numeros",
+        "icon": "dashboard",
+        "order": 52,
+        "disabled": false,
+        "hidden": false
+    }
+]
